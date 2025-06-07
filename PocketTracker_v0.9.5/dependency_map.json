@@ -1,0 +1,38 @@
+{
+  "main.py": [
+    "stats.json",
+    "rank_utils.py",
+    "update_snapshot.py",
+    "data/"
+  ],
+  "launch_tracker.bat": [
+    "main.py",
+    "overlay/index.html",
+    "overlay/dashboard.html"
+  ],
+  "update_snapshot.py": [
+    "daily_log.csv",
+    "trend_snapshot.json"
+  ],
+  "rank_utils.py": [
+    "stats.json",
+    "config.json"
+  ],
+  "overlay/index.html": [
+    "stats.json",
+    "overlay.js"
+  ],
+  "overlay/dashboard.html": [
+    "trend_snapshot.json"
+  ],
+  "overlay/overlay.js": [
+    "stats.json",
+    "trend_snapshot.json"
+  ],
+  "data/stats.json": [],
+  "data/daily_log.csv": [],
+  "data/trend_snapshot.json": [],
+  "config.json": [
+    "rank_utils.py"
+  ]
+}

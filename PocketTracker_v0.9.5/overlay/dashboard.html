@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PocketTracker Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="overlay.js" defer></script>
+  <style>
+    body {
+      background-color: #eef5ff;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .section {
+      background: #f8faff;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    canvas {
+      max-width: 100%;
+    }
+    .highlight {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>PocketTracker Performance Dashboard</h1>
+
+  <div class="section">
+    <div class="highlight">📅 Yesterday's Performance</div>
+    <div id="yesterday-summary">Loading...</div>
+    <br />
+    <div class="highlight">📊 7-Day Trends</div>
+    <div id="seven-day-summary">Loading...</div>
+  </div>
+
+  <div class="section">
+    <canvas id="winRateChart"></canvas>
+  </div>
+
+  <script>
+    async function loadTrendSummary() {
+      const res = await fetch("../data/trend_snapshot.json");
+      const data = await res.json();
+
+      const arrow = val => val >= 0 ? "📈" : "📉";
+      const color = val => val >= 0 ? "green" : "red";
+
+      const yest = data.yesterday;
+      const seven = data["7_day"];
+
+      const yPtsTrend = yest.ppg - data.season_avg_ppg;
+      const yWinTrend = yest.win_percent - data.overall_avg_win_percent;
+
+      const gTrend = seven.avg_games - data.overall_avg_games;
+      const wTrend = seven.avg_win_percent - data.overall_avg_win_percent;
+
+      document.getElementById("yesterday-summary").innerHTML =
+        `<strong style="font-weight: bold;">Yesterday:</strong> ` +
+        `<span style="color:${color(yPtsTrend)};">${yest.ppg >= 0 ? '+' : ''}${yest.ppg} pts/game</span> ${arrow(yPtsTrend)} | ` +
+        `<strong>Win Rate:</strong> <span style="color:${color(yWinTrend)};">${yest.win_percent}%</span> ${arrow(yWinTrend)}`;
+
+      document.getElementById("seven-day-summary").innerHTML =
+        `<strong style="font-weight: bold;">7-Day Avg:</strong> ` +
+        `<span style="color:${color(gTrend)};">${seven.avg_games} games/day</span> ${arrow(gTrend)} | ` +
+        `<strong>Win Rate:</strong> <span style="color:${color(wTrend)};">${seven.avg_win_percent}%</span> ${arrow(wTrend)}`;
+    }
+
+    async function loadGraph() {
+      const res = await fetch("../data/daily_log.csv");
+      const text = await res.text();
+      const lines = text.trim().split("\n");
+      const rows = lines.slice(1).map(row => row.split(","));
+
+      const labels = [];
+      const winToday = [];
+      const winSeason = [];
+
+      for (const row of rows) {
+        const date = row[0];
+        const wins = parseInt(row[1]);
+        const losses = parseInt(row[2]);
+        const seasonWin = parseFloat(row[5]);
+
+        const totalGames = wins + losses;
+        const winPct = totalGames > 0 ? (wins / totalGames) * 100 : 0;
+
+        labels.push(date);
+        winToday.push(winPct.toFixed(1));
+        winSeason.push(seasonWin.toFixed(1));
+      }
+
+      const ctx = document.getElementById("winRateChart").getContext("2d");
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: "Win % Today",
+              data: winToday,
+              fill: true,
+              borderColor: "rgba(54, 162, 235, 1)",
+              backgroundColor: "rgba(54, 162, 235, 0.2)",
+              tension: 0.3
+            },
+            {
+              label: "Season Win %",
+              data: winSeason,
+              fill: false,
+              borderColor: "rgba(75, 192, 192, 1)",
+              tension: 0.3
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: "bottom"
+            },
+            tooltip: {
+              mode: "index",
+              intersect: false
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100
+            }
+          }
+        }
+      });
+    }
+
+    window.addEventListener("load", () => {
+      loadTrendSummary();
+      loadGraph();
+    });
+  </script>
+</body>
+</html>

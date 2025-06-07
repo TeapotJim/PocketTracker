@@ -1,0 +1,193 @@
+{
+    "ranks": {
+        "Beginner": [
+            {
+                "rank": 1,
+                "min_points": 0,
+                "win": 10,
+                "loss": 0,
+                "streak_bonus": {
+                    "2": 3,
+                    "3": 6,
+                    "4": 9,
+                    "5": 12
+                }
+            },
+            {
+                "rank": 2,
+                "min_points": 50,
+                "win": 10,
+                "loss": 0,
+                "streak_bonus": {
+                    "2": 3,
+                    "3": 6,
+                    "4": 9,
+                    "5": 12
+                }
+            },
+            {
+                "rank": 3,
+                "min_points": 100,
+                "win": 10,
+                "loss": 0,
+                "streak_bonus": {
+                    "2": 3,
+                    "3": 6,
+                    "4": 9,
+                    "5": 12
+                }
+            },
+            {
+                "rank": 4,
+                "min_points": 150,
+                "win": 10,
+                "loss": 0,
+                "streak_bonus": {
+                    "2": 3,
+                    "3": 6,
+                    "4": 9,
+                    "5": 12
+                }
+            }
+        ],
+        "Poke Ball": [
+            {
+                "rank": 1,
+                "min_points": 145,
+                "win": 10,
+                "loss": -5,
+                "streak_bonus": {
+                    "2": 3,
+                    "3": 6,
+                    "4": 9,
+                    "5": 12
+                }
+            },
+            {
+                "rank": 2,
+                "min_points": 195,
+                "win": 10,
+                "loss": -5,
+                "streak_bonus": {
+                    "2": 3,
+                    "3": 6,
+                    "4": 9,
+                    "5": 12
+                }
+            },
+            {
+                "rank": 3,
+                "min_points": 245,
+                "win": 10,
+                "loss": -5,
+                "streak_bonus": {
+                    "2": 3,
+                    "3": 6,
+                    "4": 9,
+                    "5": 12
+                }
+            },
+            {
+                "rank": 4,
+                "min_points": 300,
+                "win": 10,
+                "loss": -5,
+                "streak_bonus": {
+                    "2": 3,
+                    "3": 6,
+                    "4": 9,
+                    "5": 12
+                }
+            }
+        ],
+        "Great Ball": [
+            {
+                "rank": 1,
+                "min_points": 355,
+                "win": 10,
+                "loss": -5,
+                "streak_bonus": {
+                    "2": 3,
+                    "3": 6,
+                    "4": 9,
+                    "5": 12
+                }
+            },
+            {
+                "rank": 2,
+                "min_points": 420,
+                "win": 10,
+                "loss": -5,
+                "streak_bonus": {
+                    "2": 3,
+                    "3": 6,
+                    "4": 9,
+                    "5": 12
+                }
+            },
+            {
+                "rank": 3,
+                "min_points": 490,
+                "win": 10,
+                "loss": -5,
+                "streak_bonus": {
+                    "2": 3,
+                    "3": 6,
+                    "4": 9,
+                    "5": 12
+                }
+            },
+            {
+                "rank": 4,
+                "min_points": 600,
+                "win": 10,
+                "loss": -5,
+                "streak_bonus": {
+                    "2": 3,
+                    "3": 6,
+                    "4": 9,
+                    "5": 12
+                }
+            }
+        ],
+        "Ultra Ball": [
+            {
+                "rank": 1,
+                "min_points": 710,
+                "win": 10,
+                "loss": -7,
+                "streak_bonus": {}
+            },
+            {
+                "rank": 2,
+                "min_points": 860,
+                "win": 10,
+                "loss": -7,
+                "streak_bonus": {}
+            },
+            {
+                "rank": 3,
+                "min_points": 1010,
+                "win": 10,
+                "loss": -7,
+                "streak_bonus": {}
+            },
+            {
+                "rank": 4,
+                "min_points": 1225,
+                "win": 10,
+                "loss": -7,
+                "streak_bonus": {}
+            }
+        ],
+        "Master Ball": [
+            {
+                "rank": "Master",
+                "min_points": 1450,
+                "win": 10,
+                "loss": -10,
+                "streak_bonus": {}
+            }
+        ]
+    }
+}

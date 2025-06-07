@@ -1,0 +1,13 @@
+Version: 0.9.3
+Date: 2025-04-03
+Status: Stable
+
+Major Changes:
+- Fixed issue with "Points to Next" not updating dynamically
+- Added function `points_to_next_rank()` to rank_utils.py
+- Integrated dynamic rank point tracking into main.py
+- Confirmed overlay, dashboard, and control panel all read updated values
+
+Notes:
+- Final testing passed
+- Prepared for asset and layout upgrades in v0.9.4

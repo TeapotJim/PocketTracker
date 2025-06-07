@@ -1,0 +1,18 @@
+{
+  "yesterday": {
+    "points": 48,
+    "win_percent": 60.0,
+    "ppg": 6.0,
+    "trend_points": "up",
+    "trend_winrate": "up"
+  },
+  "7_day": {
+    "avg_games": 14.0,
+    "avg_win_percent": 59.2,
+    "trend_games": "down",
+    "trend_winrate": "down"
+  },
+  "overall_avg_games": 13.21,
+  "overall_avg_win_percent": 58.1,
+  "season_avg_ppg": 5.4
+}

@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PocketTracker Overlay</title>
+  <style>
+    body {
+      background-color: #eef2f8;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    #tracker-container {
+      width: 300px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .section {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 12px 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .section-title {
+      font-weight: bold;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .section div {
+      font-size: 0.95rem;
+      margin: 2px 0;
+    }
+    .rank-badge {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-top: 6px;
+    }
+  
+    .stat-label {
+      font-weight: bold;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+      color: #222;
+    }
+    .stat-value {
+      font-size: 1rem;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    }
+
+  </style>
+</head>
+<body>
+  <div id="tracker-container">
+    
+    <div class="section" id="logo" style="background-image: url('../assets/header_bg.svg'); background-size: cover; background-position: center; height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0;">
+      <img src="../assets/logo.png" alt="Logo" style="height: 38px; object-fit: contain; margin-top: 8px;">
+      <div class="rank-badge" style="font-weight: bold; font-size: 1.1rem; margin: 4px 0 6px 0;">LIVE TRACKER</div>
+    </div>
+    
+
+    <div class="section" style="background: url('../assets/block_rank.svg') no-repeat center center; background-size: cover; padding: 20px;">
+      <div class="section-title">Current Rank</div>
+      <div class="stat-label">Current Rank</div><div class="stat-value" id="current-rank">Loading...</div>
+      <div id="rank-streak">...</div>
+    </div>
+
+    <div class="section" style="background: url('../assets/block_points.svg') no-repeat center center; background-size: cover; padding: 20px;">
+      <div class="section-title">Current Points</div>
+      <div class="stat-label">Points</div><div class="stat-value" id="points">...</div>
+      <div class="stat-label">Next Rank</div><div class="stat-value" id="next-rank">...</div>
+      <div class="stat-label">Points to Next</div><div class="stat-value" id="points-to-next">...</div>
+      <div class="stat-label">Est. Games Needed</div><div class="stat-value" id="est-games-next">...</div>
+    </div>
+
+    <div class="section" style="background: url('../assets/block_today.svg') no-repeat center center; background-size: cover; padding: 20px;">
+      <div class="section-title">Today</div>
+      <div id="wins">Wins Today: ...</div>
+      <div id="losses">Losses Today: ...</div>
+      <div id="win-percent">Win % Today: ...</div>
+      <div id="streak">Streak: ...</div>
+    </div>
+
+    <div class="section" style="background: url('../assets/block_world.svg') no-repeat center center; background-size: cover; padding: 20px;">
+      <div class="section-title">World #1</div>
+      <div id="top-player">Top Score: ...</div>
+      <div id="points-behind">Points Behind: ...</div>
+      <div id="est-games-to-top">Est. Games to #1: ...</div>
+    </div>
+  </div>
+
+  <script src="overlay.js"></script>
+</body>
+</html>
