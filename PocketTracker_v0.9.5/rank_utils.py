@@ -2,20 +2,33 @@ import json
 import os
 import math
 
-CONFIG_FILE = os.path.join("config.json")
+# Use a path relative to this file so the module works regardless of the
+# current working directory.
+CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json")
 
 def load_config():
     with open(CONFIG_FILE, "r") as f:
         return json.load(f)
 
 def get_rank_info(points):
+    """Return the rank configuration for the provided point total."""
     config = load_config()
+    # Flatten and sort all ranks by their minimum point thresholds so the logic
+    # works regardless of how ranks are grouped in the config file.
+    ranks = []
     for group in config["ranks"].values():
-        for rank in group:
-            if points < rank["min_points"]:
-                return previous_rank
-            previous_rank = rank
-    return previous_rank
+        ranks.extend(group)
+    ranks.sort(key=lambda r: r["min_points"])
+
+    # Initialise with the lowest rank so we have a sensible default.
+    previous_rank = ranks[0]
+    for rank in ranks:
+        if points < rank["min_points"]:
+            return previous_rank
+        previous_rank = rank
+
+    # If points exceed the highest threshold, return the last rank.
+    return ranks[-1]
 
 def calculate_points(stats, is_win):
     current = get_rank_info(stats["current_points"])
